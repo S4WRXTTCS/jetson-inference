@@ -31,24 +31,24 @@ segNet::~segNet()
 
 
 // Create
-segNet* segNet::Create( NetworkType networkType )
+segNet* segNet::Create( NetworkType networkType, uint32_t maxBatchSize )
 {
 	if( networkType == FCN_ALEXNET_PASCAL_VOC )
-		return Create("FCN-Alexnet-PASCAL-VOC/deploy.prototxt", "FCN-Alexnet-PASCAL-VOC/snapshot_iter_146400.caffemodel", "FCN-Alexnet-PASCAL-VOC/pascal-voc-classes.txt", NULL );
+		return Create("networks/FCN-Alexnet-Pascal-VOC/deploy.prototxt", "networks/FCN-Alexnet-Pascal-VOC/snapshot_iter_146400.caffemodel", "networks/FCN-Alexnet-Pascal-VOC/pascal-voc-classes.txt", "networks/FCN-Alexnet-Pascal-VOC/pascal-voc-colors.txt", SEGNET_DEFAULT_INPUT, SEGNET_DEFAULT_OUTPUT, maxBatchSize );
 	else if( networkType == FCN_ALEXNET_SYNTHIA_CVPR16 )
-		return Create("FCN-Alexnet-SYNTHIA-CVPR16/deploy.prototxt", "FCN-Alexnet-SYNTHIA-CVPR16/snapshot_iter_1206700.caffemodel", "FCN-Alexnet-SYNTHIA-CVPR16/synthia-cvpr16-labels.txt", "FCN-Alexnet-SYNTHIA-CVPR16/synthia-cvpr16-train-colors.txt" );
+		return Create("networks/FCN-Alexnet-SYNTHIA-CVPR16/deploy.prototxt", "networks/FCN-Alexnet-SYNTHIA-CVPR16/snapshot_iter_1206700.caffemodel", "networks/FCN-Alexnet-SYNTHIA-CVPR16/synthia-cvpr16-labels.txt", "networks/FCN-Alexnet-SYNTHIA-CVPR16/synthia-cvpr16-train-colors.txt", SEGNET_DEFAULT_INPUT, SEGNET_DEFAULT_OUTPUT, maxBatchSize );
 	else if( networkType == FCN_ALEXNET_SYNTHIA_SUMMER_HD )
-		return Create("FCN-Alexnet-SYNTHIA-Summer-HD/deploy.prototxt", "FCN-Alexnet-SYNTHIA-Summer-HD/snapshot_iter_902888.caffemodel", "FCN-Alexnet-SYNTHIA-Summer-HD/synthia-seq-labels.txt", "FCN-Alexnet-SYNTHIA-Summer-HD/synthia-seq-train-colors.txt" );	
+		return Create("networks/FCN-Alexnet-SYNTHIA-Summer-HD/deploy.prototxt", "networks/FCN-Alexnet-SYNTHIA-Summer-HD/snapshot_iter_902888.caffemodel", "networks/FCN-Alexnet-SYNTHIA-Summer-HD/synthia-seq-labels.txt", "networks/FCN-Alexnet-SYNTHIA-Summer-HD/synthia-seq-train-colors.txt", SEGNET_DEFAULT_INPUT, SEGNET_DEFAULT_OUTPUT, maxBatchSize );	
 	else if( networkType == FCN_ALEXNET_SYNTHIA_SUMMER_SD )
-		return Create("FCN-Alexnet-SYNTHIA-Summer-SD/deploy.prototxt", "FCN-Alexnet-SYNTHIA-Summer-SD/snapshot_iter_431816.caffemodel", "FCN-Alexnet-SYNTHIA-Summer-SD/synthia-seq-labels.txt", "FCN-Alexnet-SYNTHIA-Summer-SD/synthia-seq-train-colors.txt" );		
+		return Create("networks/FCN-Alexnet-SYNTHIA-Summer-SD/deploy.prototxt", "networks/FCN-Alexnet-SYNTHIA-Summer-SD/snapshot_iter_431816.caffemodel", "networks/FCN-Alexnet-SYNTHIA-Summer-SD/synthia-seq-labels.txt", "networks/FCN-Alexnet-SYNTHIA-Summer-SD/synthia-seq-train-colors.txt", SEGNET_DEFAULT_INPUT, SEGNET_DEFAULT_OUTPUT, maxBatchSize );		
 	else if( networkType == FCN_ALEXNET_CITYSCAPES_HD )
-		return Create("FCN-Alexnet-Cityscapes-HD/deploy.prototxt", "FCN-Alexnet-Cityscapes-HD/snapshot_iter_367568.caffemodel", "FCN-Alexnet-Cityscapes-HD/cityscapes-labels.txt", "FCN-Alexnet-Cityscapes-HD/cityscapes-deploy-colors.txt" );	
+		return Create("networks/FCN-Alexnet-Cityscapes-HD/deploy.prototxt", "networks/FCN-Alexnet-Cityscapes-HD/snapshot_iter_367568.caffemodel", "networks/FCN-Alexnet-Cityscapes-HD/cityscapes-labels.txt", "networks/FCN-Alexnet-Cityscapes-HD/cityscapes-deploy-colors.txt", SEGNET_DEFAULT_INPUT, SEGNET_DEFAULT_OUTPUT, maxBatchSize );	
 	else if( networkType == FCN_ALEXNET_CITYSCAPES_SD )
-		return Create("FCN-Alexnet-Cityscapes-SD/deploy.prototxt", "FCN-Alexnet-Cityscapes-SD/snapshot_iter_114860.caffemodel", "FCN-Alexnet-Cityscapes-SD/cityscapes-labels.txt", "FCN-Alexnet-Cityscapes-SD/cityscapes-deploy-colors.txt" );		
-	else if( networkType == FCN_ALEXNET_AERIAL_FPV_720p_4ch )
-		return Create("FCN-Alexnet-Aerial-FPV-4ch-720p/deploy.prototxt", "FCN-Alexnet-Aerial-FPV-4ch-720p/snapshot_iter_1777146.caffemodel", "FCN-Alexnet-Aerial-FPV-4ch-720p/fpv-labels.txt", "FCN-Alexnet-Aerial-FPV-4ch-720p/fpv-deploy-colors.txt", "data", "score_fr_4classes" );			
-	else if( networkType == FCN_ALEXNET_AERIAL_FPV_720p_21ch )
-		return Create("FCN-Alexnet-Aerial-FPV-21ch-720p/deploy.prototxt", "FCN-Alexnet-Aerial-FPV-21ch-720p/snapshot_iter_248178.caffemodel", "FCN-Alexnet-Aerial-FPV-21ch-720p/fpv-labels.txt", "FCN-Alexnet-Aerial-FPV-21ch-720p/fpv-deploy-colors.txt" );		
+		return Create("networks/FCN-Alexnet-Cityscapes-SD/deploy.prototxt", "networks/FCN-Alexnet-Cityscapes-SD/snapshot_iter_114860.caffemodel", "networks/FCN-Alexnet-Cityscapes-SD/cityscapes-labels.txt", "networks/FCN-Alexnet-Cityscapes-SD/cityscapes-deploy-colors.txt", SEGNET_DEFAULT_INPUT, SEGNET_DEFAULT_OUTPUT, maxBatchSize );		
+	//else if( networkType == FCN_ALEXNET_AERIAL_FPV_720p_4ch )
+	//	return Create("FCN-Alexnet-Aerial-FPV-4ch-720p/deploy.prototxt", "FCN-Alexnet-Aerial-FPV-4ch-720p/snapshot_iter_1777146.caffemodel", "FCN-Alexnet-Aerial-FPV-4ch-720p/fpv-labels.txt", "FCN-Alexnet-Aerial-FPV-4ch-720p/fpv-deploy-colors.txt", "data", "score_fr_4classes", SEGNET_DEFAULT_INPUT, SEGNET_DEFAULT_OUTPUT, maxBatchSize );			
+	else if( networkType == FCN_ALEXNET_AERIAL_FPV_720p )
+		return Create("networks/FCN-Alexnet-Aerial-FPV-720p/fcn_alexnet.deploy.prototxt", "networks/FCN-Alexnet-Aerial-FPV-720p/snapshot_iter_10280.caffemodel", "networks/FCN-Alexnet-Aerial-FPV-720p/fpv-labels.txt", "networks/FCN-Alexnet-Aerial-FPV-720p/fpv-deploy-colors.txt", SEGNET_DEFAULT_INPUT, SEGNET_DEFAULT_OUTPUT, maxBatchSize );		
 	else
 		return NULL;
 }
@@ -63,7 +63,7 @@ segNet* segNet::Create( int argc, char** argv )
 
 	if( !modelName )
 	{
-		modelName = "fcn-alexnet-cityscapes-sd";
+		modelName = "fcn-alexnet-cityscapes-hd";
 
 		if( argc > 3 )
 			modelName = argv[3];	
@@ -84,10 +84,10 @@ segNet* segNet::Create( int argc, char** argv )
 			type = segNet::FCN_ALEXNET_SYNTHIA_SUMMER_HD;
 		else if( strcasecmp(modelName, "fcn-alexnet-aerial-fpv-720p") == 0 )
 			type = segNet::FCN_ALEXNET_AERIAL_FPV_720p;
-		else if( strcasecmp(modelName, "fcn-alexnet-aerial-fpv-720p-4ch") == 0 )
+		/*else if( strcasecmp(modelName, "fcn-alexnet-aerial-fpv-720p-4ch") == 0 )
 			type = segNet::FCN_ALEXNET_AERIAL_FPV_720p_4ch;
 		else if( strcasecmp(modelName, "fcn-alexnet-aerial-fpv-720p-21ch") == 0 )
-			type = segNet::FCN_ALEXNET_AERIAL_FPV_720p_21ch;
+			type = segNet::FCN_ALEXNET_AERIAL_FPV_720p_21ch;*/
 
 		// create segnet from pretrained model
 		return segNet::Create(type);
@@ -100,16 +100,21 @@ segNet* segNet::Create( int argc, char** argv )
 		const char* input    = cmdLine.GetString("input_blob");
 		const char* output   = cmdLine.GetString("output_blob");
 
-		if( !input ) 	input  = "data";
-		if( !output )  output = "score_fr_21classes";
+		if( !input ) 	input = SEGNET_DEFAULT_INPUT;
+		if( !output )  output = SEGNET_DEFAULT_OUTPUT;
 
-		return segNet::Create(prototxt, modelName, labels, colors, input, output);
+		int maxBatchSize = cmdLine.GetInt("batch_size");
+		
+		if( maxBatchSize < 1 )
+			maxBatchSize = 2;
+		
+		return segNet::Create(prototxt, modelName, labels, colors, input, output, maxBatchSize);
 	}
 }
 
 
 // Create
-segNet* segNet::Create( const char* prototxt, const char* model, const char* labels_path, const char* colors_path, const char* input_blob, const char* output_blob )
+segNet* segNet::Create( const char* prototxt, const char* model, const char* labels_path, const char* colors_path, const char* input_blob, const char* output_blob, uint32_t maxBatchSize )
 {
 	// create segmentation model
 	segNet* net = new segNet();
@@ -123,8 +128,9 @@ segNet* segNet::Create( const char* prototxt, const char* model, const char* lab
 	printf("       -- model:      %s\n", model);
 	printf("       -- labels:     %s\n", labels_path);
 	printf("       -- colors:     %s\n", colors_path);
-	printf("       -- input_blob  %s\n", input_blob);
-	printf("       -- output_blob %s\n\n", output_blob);
+	printf("       -- input_blob  '%s'\n", input_blob);
+	printf("       -- output_blob '%s'\n", output_blob);
+	printf("       -- batch_size  %u\n\n", maxBatchSize);
 	
 	//net->EnableProfiler();	
 	//net->EnableDebug();
@@ -134,7 +140,7 @@ segNet* segNet::Create( const char* prototxt, const char* model, const char* lab
 	std::vector<std::string> output_blobs;
 	output_blobs.push_back(output_blob);
 	
-	if( !net->LoadNetwork(prototxt, model, NULL, input_blob, output_blobs) )
+	if( !net->LoadNetwork(prototxt, model, NULL, input_blob, output_blobs, maxBatchSize) )
 	{
 		printf("segNet -- failed to initialize.\n");
 		return NULL;
@@ -155,9 +161,9 @@ segNet* segNet::Create( const char* prototxt, const char* model, const char* lab
 	}
 	
 	// initialize array of classified argmax
-	const int s_w = net->mOutputs[0].dims.w;
-	const int s_h = net->mOutputs[0].dims.h;
-	const int s_c = net->mOutputs[0].dims.c;
+	const int s_w = DIMS_W(net->mOutputs[0].dims);
+	const int s_h = DIMS_H(net->mOutputs[0].dims);
+	const int s_c = DIMS_C(net->mOutputs[0].dims);
 		
 	printf(LOG_GIE "segNet outputs -- s_w %i  s_h %i  s_c %i\n", s_w, s_h, s_c);
 
@@ -347,9 +353,9 @@ bool segNet::Overlay( float* rgba, float* output, uint32_t width, uint32_t heigh
 	// retrieve scores
 	float* scores = mOutputs[0].CPU;
 
-	const int s_w = mOutputs[0].dims.w;
-	const int s_h = mOutputs[0].dims.h;
-	const int s_c = mOutputs[0].dims.c;
+	const int s_w = DIMS_W(mOutputs[0].dims);
+	const int s_h = DIMS_H(mOutputs[0].dims);
+	const int s_c = DIMS_C(mOutputs[0].dims);
 		
 	//const float s_x = float(width) / float(s_w);		// TODO bug: this should use mWidth/mHeight dimensions, in case user dimensions are different
 	//const float s_y = float(height) / float(s_h);

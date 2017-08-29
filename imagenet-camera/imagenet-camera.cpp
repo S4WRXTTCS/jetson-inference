@@ -43,15 +43,8 @@ int main( int argc, char** argv )
 	
 
 	/*
-	 * parse network type from CLI arguments
+	 * attach signal handler
 	 */
-	imageNet::NetworkType networkType = imageNet::GOOGLENET;
-
-	if( argc > 1 && strcmp(argv[1], "alexnet") == 0 )
-		networkType = imageNet::ALEXNET;
-        if( argc > 1 && strcmp(argv[1], "alexnet_54cards") == 0)
-                networkType = imageNet::ALEXNET_54CARDS;
-		
 	if( signal(SIGINT, sig_handler) == SIG_ERR )
 		printf("\ncan't catch SIGINT\n");
 
@@ -76,7 +69,7 @@ int main( int argc, char** argv )
 	/*
 	 * create imageNet
 	 */
-	imageNet* net = imageNet::Create(networkType);
+	imageNet* net = imageNet::Create(argc, argv);
 	
 	if( !net )
 	{

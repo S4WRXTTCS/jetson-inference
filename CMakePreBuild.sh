@@ -35,15 +35,10 @@ mv bvlc_alexnet.caffemodel ../data/networks
 wget --no-check-certificate 'https://nvidia.box.com/shared/static/at8b1105ww1c5h7p30j5ko8qfnxrs0eg.caffemodel' -O bvlc_googlenet.caffemodel
 mv bvlc_googlenet.caffemodel ../data/networks
 
-mv ../gdown.pl gdown.pl
+# GoogleNet, ILSVR12 subset
+wget --no-check-certificate 'https://nvidia.box.com/shared/static/zb8i3zcg39sdjjxfty7o5935hpbd64y4.gz' -O GoogleNet-ILSVRC12-subset.tar
+tar -xzvf GoogleNet-ILSVRC12-subset.tar -C ../data/networks
 
-# uncomment to download AlexNet based 54PlayingCards (212MB)
-perl gdown.pl 'https://drive.google.com/file/d/0B8dR1eAmu3fTWWpkSEVLV0Z5TVE/view?usp=sharing' 'alexnet_54cards.tar.gz'
-tar -xzvf alexnet_54cards.tar.gz -C ../data/networks
-
-# uncomment to download DetectNet based CardNet
-perl gdown.pl 'https://drive.google.com/file/d/0B8dR1eAmu3fTMU9Vb3p1S05Bclk/view?usp=sharing' 'cardnet-100.tar.gz'
-tar -xzvf cardnet-100.tar.gz -C ../data/networks
 
 # DetectNet's  (uncomment to download)
 wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=0BwYxpotGWRNOMzVRODNuSHlvbms' -O ped-100.tar.gz
@@ -56,9 +51,24 @@ wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=0BwY
 tar -xzvf facenet-120.tar.gz -C ../data/networks
 
 
-# Segmentation Nets (202MB each - uncomment to download)
-#wget --no-check-certificate 'https://nvidia.box.com/shared/static/xj20b6qopfwkkpqm12ffiuaekk6bs8op.gz' -O FCN-Alexnet-PASCAL-VOC.tar.gz
-#tar -xzvf FCN-Alexnet-PASCAL-VOC.tar.gz -C ../data/networks
+# COCO (DetectNet)
+
+wget --no-check-certificate 'https://nvidia.box.com/shared/static/xi71hlsht5b0y66loeg73rxfa73q561s.gz' -O DetectNet-COCO-Airplane.tar.gz
+tar -xzvf DetectNet-COCO-Airplane.tar.gz -C ../data/networks
+
+wget --no-check-certificate 'https://nvidia.box.com/shared/static/8bhm91o9yldpf97dcz5d0welgmjy7ucw.gz' -O DetectNet-COCO-Bottle.tar.gz
+tar -xzvf DetectNet-COCO-Bottle.tar.gz -C ../data/networks
+
+wget --no-check-certificate 'https://nvidia.box.com/shared/static/fq0m0en5mmssiizhs9nxw3xtwgnoltf2.gz' -O DetectNet-COCO-Chair.tar.gz
+tar -xzvf DetectNet-COCO-Chair.tar.gz -C ../data/networks
+
+wget --no-check-certificate 'https://nvidia.box.com/shared/static/3qdg3z5qvl8iwjlds6bw7bwi2laloytu.gz' -O DetectNet-COCO-Dog.tar.gz
+tar -xzvf DetectNet-COCO-Dog.tar.gz -C ../data/networks
+
+
+# Segmentation Nets (uncomment to download)
+wget --no-check-certificate 'https://nvidia.box.com/shared/static/xj20b6qopfwkkpqm12ffiuaekk6bs8op.gz' -O FCN-Alexnet-Pascal-VOC.tar.gz
+tar -xzvf FCN-Alexnet-Pascal-VOC.tar.gz -C ../data/networks
 
 #wget --no-check-certificate 'https://nvidia.box.com/shared/static/u5ey2ws0nbtzyqyftkuqazx1honw6wry.gz' -O FCN-Alexnet-SYNTHIA-CVPR16.tar.gz
 #tar -xzvf FCN-Alexnet-SYNTHIA-CVPR16.tar.gz -C ../data/networks
@@ -75,8 +85,8 @@ tar -xzvf FCN-Alexnet-Cityscapes-HD.tar.gz -C ../data/networks
 #wget --no-check-certificate 'https://nvidia.box.com/shared/static/pa5d338t9ntca5chfbymnur53aykhall.gz' -O FCN-Alexnet-Cityscapes-SD.tar.gz
 #tar -xzvf FCN-Alexnet-Cityscapes-SD.tar.gz -C ../data/networks
 
-wget --no-check-certificate 'https://nvidia.box.com/shared/static/5588qoegjvtjf8h8181nrhlldgjcp8cq.gz' -O FCN-Alexnet-Aerial-FPV-21ch-720p.tar.gz
-tar -xzvf FCN-Alexnet-Aerial-FPV-21ch-720p.tar.gz -C ../data/networks
+wget --no-check-certificate 'https://nvidia.box.com/shared/static/y1mzlwkmytzwg2m7akt7tcbsd33f9opz.gz' -O FCN-Alexnet-Aerial-FPV-720p.tar.gz
+tar -xzvf FCN-Alexnet-Aerial-FPV-720p.tar.gz -C ../data/networks
 
 #wget --no-check-certificate 'https://nvidia.box.com/shared/static/4z5lmlja13blj3mdn6vesrft57p30446.gz' -O FCN-Alexnet-Aerial-FPV-4ch-720p.tar.gz
 #tar -xzvf FCN-Alexnet-Aerial-FPV-4ch-720p.tar.gz -C ../data/networks

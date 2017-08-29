@@ -2,12 +2,17 @@ var group__deepVision =
 [
     [ "detectNet", "classdetectNet.html", [
       [ "NetworkType", "classdetectNet.html#a8912b56ba825368c4911e315f4f207e4", [
+        [ "COCO_AIRPLANE", "classdetectNet.html#a8912b56ba825368c4911e315f4f207e4a0be700962b9af1014273d6c51274d717", null ],
+        [ "COCO_BOTTLE", "classdetectNet.html#a8912b56ba825368c4911e315f4f207e4ab5ce7152df406d0e699fb47c29cda175", null ],
+        [ "COCO_CHAIR", "classdetectNet.html#a8912b56ba825368c4911e315f4f207e4aa9c3e7f707f38390b8ebe551a6844efd", null ],
+        [ "COCO_DOG", "classdetectNet.html#a8912b56ba825368c4911e315f4f207e4afb5c869902acb688cf8b4d7e334bc0f4", null ],
+        [ "FACENET", "classdetectNet.html#a8912b56ba825368c4911e315f4f207e4aba129790ea4695b8fc94f0eeecb344de", null ],
         [ "PEDNET", "classdetectNet.html#a8912b56ba825368c4911e315f4f207e4a6e6da8c4ab8ff441042f7922082be8c3", null ],
-        [ "PEDNET_MULTI", "classdetectNet.html#a8912b56ba825368c4911e315f4f207e4abddff26f00980b719858a6cf6fb71f53", null ],
-        [ "FACENET", "classdetectNet.html#a8912b56ba825368c4911e315f4f207e4aba129790ea4695b8fc94f0eeecb344de", null ]
+        [ "PEDNET_MULTI", "classdetectNet.html#a8912b56ba825368c4911e315f4f207e4abddff26f00980b719858a6cf6fb71f53", null ]
       ] ],
       [ "~detectNet", "classdetectNet.html#a82c0e177e0da142fa22aa7580077307d", null ],
       [ "detectNet", "classdetectNet.html#a9c06901bf2562bddff0fe73cbed7196c", null ],
+      [ "defaultColors", "classdetectNet.html#a6213356e9907dc284e3212c42b346c62", null ],
       [ "Detect", "classdetectNet.html#aa319ff5ea57875921b7354094ed7cb33", null ],
       [ "DrawBoxes", "classdetectNet.html#a672bd8b71e0e7094e90910e5f1bb2d77", null ],
       [ "GetMaxBoundingBoxes", "classdetectNet.html#ac22c4b837aa422b2d6e6672d3ceb9915", null ],
@@ -16,12 +21,14 @@ var group__deepVision =
       [ "SetClassColor", "classdetectNet.html#ab9ba7c63d2fc417d0908324fd0dc2223", null ],
       [ "SetThreshold", "classdetectNet.html#a1cb45695bf95d5fb5db48976d1de8ae2", null ],
       [ "mClassColors", "classdetectNet.html#adbbb6ba9ae382abe03347333cff66fca", null ],
-      [ "mCoverageThreshold", "classdetectNet.html#a2a95020a83b2c33353450505355af0ca", null ]
+      [ "mCoverageThreshold", "classdetectNet.html#a2a95020a83b2c33353450505355af0ca", null ],
+      [ "mMeanPixel", "classdetectNet.html#ab8e3c3649acd8bb8d7cd45653dbbb7a0", null ]
     ] ],
     [ "imageNet", "classimageNet.html", [
       [ "NetworkType", "classimageNet.html#a0b7e93af566fe96bfc58cda5f4503470", [
         [ "ALEXNET", "classimageNet.html#a0b7e93af566fe96bfc58cda5f4503470a3e774168f30b16946773a737a6c354cf", null ],
-        [ "GOOGLENET", "classimageNet.html#a0b7e93af566fe96bfc58cda5f4503470ab013750d9b65eacdae3c587dd42550c0", null ]
+        [ "GOOGLENET", "classimageNet.html#a0b7e93af566fe96bfc58cda5f4503470ab013750d9b65eacdae3c587dd42550c0", null ],
+        [ "GOOGLENET_12", "classimageNet.html#a0b7e93af566fe96bfc58cda5f4503470af4a7d4831db43dda4de80c2a395f3ebb", null ]
       ] ],
       [ "~imageNet", "classimageNet.html#af6bd86e81ff9e67ffe19b575c17ed104", null ],
       [ "imageNet", "classimageNet.html#a0ea17be1ce78b3e0758af46c970a968c", null ],
@@ -36,6 +43,7 @@ var group__deepVision =
       [ "loadClassInfo", "classimageNet.html#aeaaa0971ae45b2089aa1b2ed2048032d", null ],
       [ "mClassDesc", "classimageNet.html#a9c75cea83d0c3e605aef8c0dd8e43177", null ],
       [ "mClassSynset", "classimageNet.html#abd00b812a1f39a0bd23c43a8807d6193", null ],
+      [ "mCustomClasses", "classimageNet.html#ad5100ca715de83a14d8675d7e5ed174e", null ],
       [ "mNetworkType", "classimageNet.html#aef7f06f334699634c33b1243c4352fc9", null ],
       [ "mOutputClasses", "classimageNet.html#a80749925c9b6edf6b49043e8a0f507e3", null ]
     ] ],
@@ -47,8 +55,6 @@ var group__deepVision =
         [ "FCN_ALEXNET_SYNTHIA_SUMMER_SD", "classsegNet.html#ab561d3c9e3c733e785aaa790f0f2f660a245b790d2bc719d2397899bef7472da3", null ],
         [ "FCN_ALEXNET_CITYSCAPES_HD", "classsegNet.html#ab561d3c9e3c733e785aaa790f0f2f660a909c376ffd7d5363aea65c200f2e008e", null ],
         [ "FCN_ALEXNET_CITYSCAPES_SD", "classsegNet.html#ab561d3c9e3c733e785aaa790f0f2f660a0760a67c5a08aad80d7dc732bc760e31", null ],
-        [ "FCN_ALEXNET_AERIAL_FPV_720p_4ch", "classsegNet.html#ab561d3c9e3c733e785aaa790f0f2f660a6f23f70246edae5837e49d11ee17273f", null ],
-        [ "FCN_ALEXNET_AERIAL_FPV_720p_21ch", "classsegNet.html#ab561d3c9e3c733e785aaa790f0f2f660a8653cf52943c03e308893f96a107bc5d", null ],
         [ "FCN_ALEXNET_AERIAL_FPV_720p", "classsegNet.html#ab561d3c9e3c733e785aaa790f0f2f660a46829d99af463638dfd4e547b0a2a95d", null ],
         [ "SEGNET_CUSTOM", "classsegNet.html#ab561d3c9e3c733e785aaa790f0f2f660a95a81cd526c1ada9d225f6142f5f0f41", null ]
       ] ],
@@ -75,7 +81,7 @@ var group__deepVision =
       [ "outputLayer", "structtensorNet_1_1outputLayer.html", [
         [ "CPU", "structtensorNet_1_1outputLayer.html#ae3c4a2d254cf1258759b7ff95d9fcbde", null ],
         [ "CUDA", "structtensorNet_1_1outputLayer.html#a29650e14f1fb9e3ac257d623f5542583", null ],
-        [ "dims", "structtensorNet_1_1outputLayer.html#a84ed34e7a34a4c94edcdad4f72fc0221", null ],
+        [ "dims", "structtensorNet_1_1outputLayer.html#a632fc84fc29c3df3a9fa7d7c377362a2", null ],
         [ "name", "structtensorNet_1_1outputLayer.html#ad34ba0cdaad850011130a611becbc31e", null ],
         [ "size", "structtensorNet_1_1outputLayer.html#ab5c8d8f6651c9696cf5e4b15e7dc1d80", null ]
       ] ],
@@ -106,7 +112,7 @@ var group__deepVision =
       [ "mInputBlobName", "classtensorNet.html#ac040cf851463cd595a20a9400a5833c2", null ],
       [ "mInputCPU", "classtensorNet.html#a03d8f99ffd7dfdc4bab679592e97c4f2", null ],
       [ "mInputCUDA", "classtensorNet.html#a9530becbabaf219e3e85d0df5f4cc2b6", null ],
-      [ "mInputDims", "classtensorNet.html#a65861b30e00ac06c61e05d6b722c1b9a", null ],
+      [ "mInputDims", "classtensorNet.html#af7da0313dd945e81649e24b07e0fac0e", null ],
       [ "mInputSize", "classtensorNet.html#ac4e059779c0fba12c1ec2380c05b8104", null ],
       [ "mMaxBatchSize", "classtensorNet.html#a0027d8b3617cfc905465925dd6d84b0f", null ],
       [ "mMeanPath", "classtensorNet.html#a11eeaa1e454a97a5634c7fb5ea1bc23d", null ],
@@ -115,5 +121,12 @@ var group__deepVision =
       [ "mOverride16", "classtensorNet.html#aa4c54769da483e481196ace91bbca171", null ],
       [ "mPrototxtPath", "classtensorNet.html#a54005b86b851fa71aeb7a83d4ad32362", null ],
       [ "mWidth", "classtensorNet.html#accab52fa354232149048440da0071573", null ]
-    ] ]
+    ] ],
+    [ "DETECTNET_DEFAULT_BBOX", "group__deepVision.html#gac8c52a38ffa041865ed71fd2ea806620", null ],
+    [ "DETECTNET_DEFAULT_COVERAGE", "group__deepVision.html#ga1e79603783719e4a79f2c68f1ef47621", null ],
+    [ "DETECTNET_DEFAULT_INPUT", "group__deepVision.html#gac824e329015dc8aed6e1112bfe21cb97", null ],
+    [ "IMAGENET_DEFAULT_INPUT", "group__deepVision.html#ga00bb3120ef3040793ad3ee25d2727f5b", null ],
+    [ "IMAGENET_DEFAULT_OUTPUT", "group__deepVision.html#ga74a585b96a1bd960b5201f6b69752fad", null ],
+    [ "SEGNET_DEFAULT_INPUT", "group__deepVision.html#ga33b5fd20f8ed468725c55eb0bcc5af71", null ],
+    [ "SEGNET_DEFAULT_OUTPUT", "group__deepVision.html#ga05c359c7dcd0c1e855543a3a9a18c422", null ]
 ];

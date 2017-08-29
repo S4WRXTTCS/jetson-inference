@@ -10,6 +10,19 @@
 
 
 /**
+ * Name of default input blob for imageNet model.
+ * @ingroup deepVision
+ */
+#define IMAGENET_DEFAULT_INPUT   "data"
+
+/**
+ * Name of default output confidence values for imageNet model.
+ * @ingroup deepVision
+ */
+#define IMAGENET_DEFAULT_OUTPUT  "prob"
+
+
+/**
  * Image recognition with GoogleNet/Alexnet or custom models, using TensorRT.
  * @ingroup deepVision
  */
@@ -21,9 +34,9 @@ public:
 	 */
 	enum NetworkType
 	{
-		ALEXNET,
-                ALEXNET_54CARDS,
-		GOOGLENET
+		ALEXNET,		/**< 1000-class ILSVR12 */
+		GOOGLENET,	/**< 1000-class ILSVR12 */
+		GOOGLENET_12	/**< 12-class subset of ImageNet ILSVR12 from the tutorial */
 	};
 
 	/**
@@ -35,15 +48,22 @@ public:
 	 * Load a new network instance
 	 * @param prototxt_path File path to the deployable network prototxt
 	 * @param model_path File path to the caffemodel
-	 * @param mean_binary File path to the mean value binary proto
+	 * @param mean_binary File path to the mean value binary proto (can be NULL)
 	 * @param class_info File path to list of class name labels
 	 * @param input Name of the input layer blob.
-	 * @param maxBatchSize The maximum batch size that the network will be optimized for.
+	 * @param maxBatchSize The maximum batch size that the network will support and be optimized for.
 	 */
-	static imageNet* Create( const char* prototxt_path, const char* model_path, const char* mean_binary,
-							 const char* class_labels, const char* input="data", const char* output="prob",
-							 uint32_t maxBatchSize=2 );
+	static imageNet* Create( const char* prototxt_path, const char* model_path, 
+						const char* mean_binary, const char* class_labels, 
+						const char* input=IMAGENET_DEFAULT_INPUT, 
+						const char* output=IMAGENET_DEFAULT_OUTPUT, 
+						uint32_t maxBatchSize=2 );
 	
+	/**
+	 * Load a new network instance by parsing the command line.
+	 */
+	static imageNet* Create( int argc, char** argv );
+
 	/**
 	 * Destroy
 	 */
@@ -93,6 +113,7 @@ protected:
 	bool init(const char* prototxt_path, const char* model_path, const char* mean_binary, const char* class_path, const char* input, const char* output, uint32_t maxBatchSize );
 	bool loadClassInfo( const char* filename );
 	
+	uint32_t mCustomClasses;
 	uint32_t mOutputClasses;
 	
 	std::vector<std::string> mClassSynset;	// 1000 class ID's (ie n01580077, n04325704)
