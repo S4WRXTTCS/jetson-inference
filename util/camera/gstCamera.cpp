@@ -19,6 +19,7 @@
 #include "cudaYUV.h"
 #include "cudaRGB.h"
 
+#include "tensorNet.h"
 
 
 // constructor
@@ -59,19 +60,43 @@ gstCamera::~gstCamera()
 
 
 // ConvertRGBA
-bool gstCamera::ConvertRGBA( void* input, void** output )
+bool gstCamera::ConvertRGBA( void* input, void** output, bool zeroCopy )
 {
 	if( !input || !output )
 		return false;
 	
 	if( !mRGBA[0] )
 	{
+		const size_t size = mWidth * mHeight * sizeof(float4);
+
 		for( uint32_t n=0; n < NUM_RINGBUFFERS; n++ )
 		{
-			if( CUDA_FAILED(cudaMalloc(&mRGBA[n], mWidth * mHeight * sizeof(float4))) )
+			if( zeroCopy )
 			{
-				printf(LOG_CUDA "gstCamera -- failed to allocate memory for %ux%u RGBA texture\n", mWidth, mHeight);
-				return false;
+				void* cpuPtr = NULL;
+				void* gpuPtr = NULL;
+
+				if( !cudaAllocMapped(&cpuPtr, &gpuPtr, size) )
+				{
+					printf(LOG_CUDA "gstCamera -- failed to allocate zeroCopy memory for %ux%xu RGBA texture\n", mWidth, mHeight);
+					return false;
+				}
+
+				if( cpuPtr != gpuPtr )
+				{
+					printf(LOG_CUDA "gstCamera -- zeroCopy memory has different pointers, please use a UVA-compatible GPU\n");
+					return false;
+				}
+
+				mRGBA[n] = gpuPtr;
+			}
+			else
+			{
+				if( CUDA_FAILED(cudaMalloc(&mRGBA[n], size)) )
+				{
+					printf(LOG_CUDA "gstCamera -- failed to allocate memory for %ux%u RGBA texture\n", mWidth, mHeight);
+					return false;
+				}
 			}
 		}
 		
@@ -286,7 +311,13 @@ bool gstCamera::buildLaunchStr()
 
 	if( onboardCamera() )
 	{
-		ss << "nvcamerasrc fpsRange=\"30.0 30.0\" ! video/x-raw(memory:NVMM), width=(int)" << mWidth << ", height=(int)" << mHeight << ", format=(string)NV12 ! nvvidconv flip-method=2 ! "; //'video/x-raw(memory:NVMM), width=(int)1920, height=(int)1080, format=(string)I420, framerate=(fraction)30/1' ! ";
+	#if NV_TENSORRT_MAJOR > 1	// if JetPack 3.1 (different flip-method)
+		const int flipMethod = 0;
+	#else
+		const int flipMethod = 2;
+	#endif
+	
+		ss << "nvcamerasrc fpsRange=\"30.0 30.0\" ! video/x-raw(memory:NVMM), width=(int)" << mWidth << ", height=(int)" << mHeight << ", format=(string)NV12 ! nvvidconv flip-method=" << flipMethod << " ! "; //'video/x-raw(memory:NVMM), width=(int)1920, height=(int)1080, format=(string)I420, framerate=(fraction)30/1' ! ";
 		ss << "video/x-raw ! appsink name=mysink";
 	}
 	else

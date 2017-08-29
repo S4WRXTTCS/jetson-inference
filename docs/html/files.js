@@ -10,7 +10,7 @@ var files =
     [ "cudaRGB.h", "cudaRGB_8h.html", "cudaRGB_8h" ],
     [ "cudaUtility.h", "cudaUtility_8h.html", "cudaUtility_8h" ],
     [ "cudaYUV.h", "cudaYUV_8h.html", "cudaYUV_8h" ],
-    [ "detectNet.h", "detectNet_8h.html", null ],
+    [ "detectNet.h", "detectNet_8h.html", "detectNet_8h" ],
     [ "glDisplay.h", "glDisplay_8h.html", [
       [ "glDisplay", "classglDisplay.html", "classglDisplay" ]
     ] ],
@@ -20,9 +20,9 @@ var files =
     [ "glUtility.h", "glUtility_8h.html", "glUtility_8h" ],
     [ "gstCamera.h", "gstCamera_8h.html", null ],
     [ "gstUtility.h", "gstUtility_8h.html", "gstUtility_8h" ],
-    [ "imageNet.h", "imageNet_8h.html", null ],
+    [ "imageNet.h", "imageNet_8h.html", "imageNet_8h" ],
     [ "loadImage.h", "loadImage_8h.html", "loadImage_8h" ],
-    [ "segNet.h", "segNet_8h.html", null ],
+    [ "segNet.h", "segNet_8h.html", "segNet_8h" ],
     [ "tensorNet.h", "tensorNet_8h.html", "tensorNet_8h" ],
     [ "v4l2Camera.h", "v4l2Camera_8h.html", [
       [ "v4l2_mmap", "structv4l2__mmap.html", "structv4l2__mmap" ]

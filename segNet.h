@@ -10,6 +10,19 @@
 
 
 /**
+ * Name of default input blob for segmentation model.
+ * @ingroup deepVision
+ */
+#define SEGNET_DEFAULT_INPUT   "data"
+
+/**
+ * Name of default output blob for segmentation model.
+ * @ingroup deepVision
+ */
+#define SEGNET_DEFAULT_OUTPUT  "score_fr_21classes"
+
+
+/**
  * Image segmentation with FCN-Alexnet or custom models, using TensorRT.
  * @ingroup deepVision
  */
@@ -22,14 +35,12 @@ public:
 	enum NetworkType
 	{
 		FCN_ALEXNET_PASCAL_VOC,		    /**< FCN-Alexnet trained on Pascal VOC dataset. */
-		FCN_ALEXNET_SYNTHIA_CVPR16,	    /**< FCN-Alexnet trained on SYNTHIA CVPR16 dataset. */
-		FCN_ALEXNET_SYNTHIA_SUMMER_HD,    /**< FCN-Alexnet trained on SYNTHIA SEQS summer datasets. */
-		FCN_ALEXNET_SYNTHIA_SUMMER_SD,    /**< FCN-Alexnet trained on SYNTHIA SEQS summer datasets. */
+		FCN_ALEXNET_SYNTHIA_CVPR16,	    /**< FCN-Alexnet trained on SYNTHIA CVPR16 dataset. @note To save disk space, this model isn't downloaded by default. Enable it in CMakePreBuild.sh */
+		FCN_ALEXNET_SYNTHIA_SUMMER_HD,    /**< FCN-Alexnet trained on SYNTHIA SEQS summer datasets. @note To save disk space, this model isn't downloaded by default. Enable it in CMakePreBuild.sh */
+		FCN_ALEXNET_SYNTHIA_SUMMER_SD,    /**< FCN-Alexnet trained on SYNTHIA SEQS summer datasets. @note To save disk space, this model isn't downloaded by default. Enable it in CMakePreBuild.sh */
 		FCN_ALEXNET_CITYSCAPES_HD,	    /**< FCN-Alexnet trained on Cityscapes dataset with 21 classes. */
-		FCN_ALEXNET_CITYSCAPES_SD,	    /**< FCN-Alexnet trained on Cityscapes dataset with 21 classes. */
-		FCN_ALEXNET_AERIAL_FPV_720p_4ch,  /**< FCN-Alexnet trained on aerial first-person view of the horizon line for drones, 1280x720 and 4 output classes */ 
-		FCN_ALEXNET_AERIAL_FPV_720p_21ch, /**< FCN-Alexnet trained on aerial first-person view of the horizon line for drones, 1280x720 and 21 output classes */
-		FCN_ALEXNET_AERIAL_FPV_720p = FCN_ALEXNET_AERIAL_FPV_720p_21ch,
+		FCN_ALEXNET_CITYSCAPES_SD,	    /**< FCN-Alexnet trained on Cityscapes dataset with 21 classes. @note To save disk space, this model isn't downloaded by default. Enable it in CMakePreBuild.sh */
+		FCN_ALEXNET_AERIAL_FPV_720p, /**< FCN-Alexnet trained on aerial first-person view of the horizon line for drones, 1280x720 and 21 output classes */
 		
 		/* add new models here */
 		SEGNET_CUSTOM
@@ -38,7 +49,7 @@ public:
 	/**
 	 * Load a new network instance
 	 */
-	static segNet* Create( NetworkType networkType=FCN_ALEXNET_CITYSCAPES_SD );
+	static segNet* Create( NetworkType networkType=FCN_ALEXNET_CITYSCAPES_SD, uint32_t maxBatchSize=2 );
 	
 	/**
 	 * Load a new network instance
@@ -46,12 +57,15 @@ public:
 	 * @param model_path File path to the caffemodel
 	 * @param class_labels File path to list of class name labels
 	 * @param class_colors File path to list of class colors
-	 * @param input Name of the input layer blob.
-	 * @param output Name of the output layer blob.
+	 * @param input Name of the input layer blob. @see SEGNET_DEFAULT_INPUT
+	 * @param output Name of the output layer blob. @see SEGNET_DEFAULT_OUTPUT
+	 * @param maxBatchSize The maximum batch size that the network will support and be optimized for.
 	 */
 	static segNet* Create( const char* prototxt_path, const char* model_path, 
-					   const char* class_labels, const char* class_colors=NULL,
-					   const char* input="data", const char* output=/*"upscore_21classes"*/"score_fr_21classes" );
+						   const char* class_labels, const char* class_colors=NULL,
+					       const char* input = SEGNET_DEFAULT_INPUT, 
+					       const char* output = SEGNET_DEFAULT_OUTPUT,
+					       uint32_t maxBatchSize=2 );
 	
 
 	/**
@@ -84,7 +98,7 @@ public:
 	/**
 	 * Retrieve the number of object classes supported in the detector
 	 */
-	inline uint32_t GetNumClasses() const						{ return mOutputs[0].dims.c; }
+	inline uint32_t GetNumClasses() const						{ return DIMS_C(mOutputs[0].dims); }
 	
 	/**
 	 * Retrieve the description of a particular class.
