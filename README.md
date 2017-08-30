@@ -1,5 +1,7 @@
 # DUAL NET INFERENCE
 
+Note: I'm in the process of migrating it to Jetpack 3.1 so it's not going to work at this time.
+
 This is a fork of NVIDIA's deep learning inference library. If you haven't seen used that yet then I strongly advise you to use that use that as a starting point, and that can be obtained on [GitHub](http://github.com/dusty-nv/jetson-inference). Most everything here was copied from there, and mutilated by someone who hacks together some code once every 5 years or so. So best practices are not exactly followed.  
 
 The main purpose of this fork is to test out pipelining DetectNet, and ImageNet. Where DetectNet is used to detect the presence of a type of object (car, boat, plane), and an ImageNet model is used to further classify the detected object (what make/model car, what type of plane, etc).
